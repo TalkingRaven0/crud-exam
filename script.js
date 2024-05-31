@@ -46,9 +46,16 @@ FORM_DEL_ITEM.onsubmit = () => {
     UpdateTable();
     return false;
 }
+
 // Add Sample Data
-SessionAddItem("Sample Item");
-SessionUpdateSales("John Doe", "Sample Item", "-100")
+if (SessionGetItems()==[]){
+    SessionAddItem("Sample Item");
+    SessionAddItem("Sample Item 2");
+}
+if (SessionGetSales()=={}){
+    SessionUpdateSales("John Doe", "Sample Item", "1000");
+    SessionUpdateSales("Jane Jenkins", "Sample Item 2", "3000");
+}
 
 // Initializations
 UpdateTable();
