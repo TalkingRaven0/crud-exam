@@ -11,9 +11,11 @@ function SessionAddItem(itemName){
     var parsed = [];
     if (raw != null){
         parsed = JSON.parse(raw);
+        if(parsed.includes(itemName))
+            return;
     }
     parsed.push(itemName);
-    sessionStorage.setItem('item',JSON.stringify(parsed));
+    sessionStorage.setItem('items',JSON.stringify(parsed));
 }
 
 function SessionDeleteItem(itemName){
@@ -26,16 +28,17 @@ function SessionDeleteItem(itemName){
     if (indexItems > -1) { // only splice array when item is found
         parsedItems.splice(indexItems, 1); // 2nd parameter means remove one item only
     }
-    sessionStorage.setItem('item',JSON.stringify(parsedItems));
+    sessionStorage.setItem('items',JSON.stringify(parsedItems));
 
     
     const rawSales = sessionStorage.getItem('sales');
-    if(raw == null)
+    if(rawSales == null)
         return;
     var parsedSales = JSON.parse(rawSales);
     Object.keys(parsedSales).forEach((person)=>{
         try{
             delete parsedSales[person][itemName];
+            sessionStorage.setItem('sales',JSON.stringify(parsedSales))
         }
         catch {return}    
     });
@@ -65,9 +68,9 @@ function SessionUpdateSales(person,item,amount){
         parsed[person][item] = 0;
     }
 
-    parsed[person][item] += amount;
+    parsed[person][item] += parseFloat(amount);
     
-    sessionStorage.setItem('item',JSON.stringify(parsed));
+    sessionStorage.setItem('sales',JSON.stringify(parsed));
 }
 
 function SessionDeletePerson(person){
@@ -80,6 +83,7 @@ function SessionDeletePerson(person){
 
     try{
         delete parsed[person];
+        sessionStorage.setItem('sales',JSON.stringify(parsed))
     } catch {
         console.log(person + " Does not exist")
     }

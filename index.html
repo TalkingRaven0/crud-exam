@@ -4,27 +4,42 @@
     <link rel="stylesheet" href="styles.css">
     <body>
         <div id="Inputs">
+            <label>
+                Choose a Functionality:
+                <div>
+                    <select id="functionality">
+                        <option value='' selected>None</option>
+                        <option value="CreateItem">New Item</option>
+                        <option value="UpdateSales">Update Sales</option>
+                        <option value="DeletePerson">Delete a Sales Person</option>
+                        <option value="DeleteItem">Delete an Item</option>
+                    </select>
+                </div>
+            </label>
+
             <form id="CreateItem">
                 <h2>Add a new Item</h2>
-                <label>
-                    Input a new Item Name: 
-                    <input type="text" id="NewItemName" required>
-                </label>
+                <div>
+                    <label>
+                        Input a new Item Name: 
+                        <input type="text" id="NewItemName" required>
+                    </label>
+                </div>
                 <button>Create</button>
             </form>
             <form id="UpdateSales">
-                <h2>Add new Sales Data</h2>
+                <h2>Update Sales Data</h2>
                 <div>
 
                     <label>
-                        Which Sales Person made the Sale:
+                        Name of Sales Person:
                         <input type="text" id="UpdatePerson" required>
                     </label>
                 </div>
                 
                 <div>
                     <label>
-                        Which Item did the Sales Person Sell:
+                        Name of Item:
                         <select id="UpdateItem" required>
                             <option value='' selected disabled>Please Select an Item</option>
                         </select>
@@ -34,7 +49,7 @@
                 <div>
                     <label>
                         What is the change in sale (can be negative):
-                        <input type="text" id="UpdateAmount" required>
+                        <input type="number" id="UpdateAmount" required>
                     </label>
                 </div>
 
@@ -43,26 +58,34 @@
             
             <form id="DeletePerson">
                 <h2>Delete a Sales Person</h2>
-                <label>
-                    Which Sales Person to delete?:
-                    <input type="text" id="DeletePerson" required>
-                </label>
+                <div>
+                    <label>
+                        Which Sales Person to Delete:
+                        <input type="text" id="InDeletePerson" required>
+                    </label>
+                </div>
                 <button>Delete</button>
             </form>
 
             <form id="DeleteItem">
                 <h2>Delete an Item</h2>
-                <label>
-                    Which Item to Delete?:
-                    <input type="text" id="DeleteItem" required>
-                </label>
+                <div>
+                    <label>
+                        Which Item to Delete:
+                        <input type="text" id="InDeleteItem" required>
+                    </label>
+                </div>
                 <button>Delete</button>
             </form>
 
         </div>
         <div id="DataDisplay">
-            <div id="DisplayCustomer"></div>
-            <div id="DisplaySales"></div>
+            <h1>Sales Data</h1>
+            <div>
+                <table id="DisplaySales">
+                  </table>
+
+            </div>
         </div>
     </body>
 
