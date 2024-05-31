@@ -48,11 +48,11 @@ FORM_DEL_ITEM.onsubmit = () => {
 }
 
 // Add Sample Data
-if (SessionGetItems()==[]){
+if (SessionGetItems() == false){
     SessionAddItem("Sample Item");
     SessionAddItem("Sample Item 2");
 }
-if (SessionGetSales()=={}){
+if (Object.entries(SessionGetSales()) == false){
     SessionUpdateSales("John Doe", "Sample Item", "1000");
     SessionUpdateSales("Jane Jenkins", "Sample Item 2", "3000");
 }
